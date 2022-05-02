@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import React, { useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 
-import ProductItem from "../ProductItem";
-import { QUERY_PRODUCTS } from "../../utils/queries";
-import spinner from "../../assets/spinner.gif";
-import { useStoreContext } from "../../utils/GlobalState";
-import { UPDATE_PRODUCTS } from "../../utils/actions";
+import ProductItem from '../ProductItem';
+import { useStoreContext } from '../../utils/GlobalState';
+import { UPDATE_PRODUCTS } from '../../utils/actions';
+import { QUERY_PRODUCTS } from '../../utils/queries';
+import spinner from '../../assets/spinner.gif';
 
 function ProductList() {
   const [state, dispatch] = useStoreContext();
@@ -13,8 +13,6 @@ function ProductList() {
   const { currentCategory } = state;
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
-
-  let products //added so 'products undef error would clear
 
   useEffect(() => {
     if (data) {
@@ -34,10 +32,11 @@ function ProductList() {
       (product) => product.category._id === currentCategory
     );
   }
+
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
-      {products.length ? (
+      {state.products.length ? (
         <div className="flex-row">
           {filterProducts().map((product) => (
             <ProductItem
