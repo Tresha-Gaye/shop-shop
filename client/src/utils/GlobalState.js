@@ -10,7 +10,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     cart: [],
     cartOpen: false,
     categories: [],
-    currentCategory: ''
+    currentCategory: '',
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
@@ -19,7 +19,5 @@ const StoreProvider = ({ value = [], ...props }) => {
 const useStoreContext = () => {
   return useContext(StoreContext);
 };
-
-
 
 export { StoreProvider, useStoreContext };
